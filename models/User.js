@@ -1,4 +1,7 @@
-// Need to add validator to email
+/*
+- Add validator for email
+- Set up virtual to count total thoughts
+*/
 
 const { Schema, model } = require("mongoose");
 const moment = require("moment");
