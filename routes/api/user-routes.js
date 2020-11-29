@@ -1,7 +1,16 @@
 const router = require("express").Router();
-// require methods from controller
+const {
+  getAllUsers,
+  getUserById,
+  createUser,
+  deleteUser,
+  updateUser,
+} = require("../../controllers/user-controller");
 
-// router dot route user with get and posts
-// router dot route user with single get, delete, and put
+// routes that don't require id
+router.route("/").get(getAllUsers).post(createUser);
+
+// routes that require id
+router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
 
 module.exports = router;
