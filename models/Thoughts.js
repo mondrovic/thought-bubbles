@@ -1,6 +1,5 @@
 /*
 - Add validator for maximum character
-- Add date formatter
 */
 
 const { Schema, model, Types } = require("mongoose");
@@ -24,7 +23,9 @@ const ReactSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    // format date
+    // formats date
+    get: (createdAtVal) =>
+      moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
   },
 });
 
@@ -38,7 +39,9 @@ const ThoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      // format date
+      // formats date
+      get: (createdAtVal) =>
+        moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
     },
     username: {
       type: String,
