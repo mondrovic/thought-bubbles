@@ -32,8 +32,8 @@ const thoughtController = {
   // add thought
   addThought({ params, body }, res) {
     Thoughts.create(body)
+      .select("-__v")
       .then(({ _id }) => {
-        console.log(_id);
         // returns _id where params.userId then pushes to thoughts
         return User.findOneAndUpdate(
           { _id: params.userId },
@@ -66,6 +66,7 @@ const thoughtController = {
 
   removeThought({ params }, res) {
     Thoughts.findOneAndDelete({ _id: params.thoughtId })
+      .select("-__v")
       .then((deletedThought) => {
         if (!deletedThought) {
           return res
@@ -84,6 +85,26 @@ const thoughtController = {
           return;
         }
         res.json(dbUserData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(400);
+      });
+  },
+
+  // update thought
+  updateThought({ params, body }, res) {
+    Thoughts.findOneAndUpdate({ _id: params.thoughtId }, body, {
+      new: true,
+      runValidators: true,
+    })
+      .select("-__v")
+      .then((dbThoughtData) => {
+        if (!dbThoughtData) {
+          res.status(404).json({ message: "No thought found with that ID" });
+          return;
+        }
+        res.json(dbThoughtData);
       })
       .catch((err) => {
         console.log(err);
