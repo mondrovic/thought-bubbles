@@ -1,9 +1,15 @@
+/*
+- Add way to remove associated thoughts from user
+- Create method to add/remove friends /api/users/:userId/friends/:friendId
+*/
+
 const { User } = require("../models");
 
 const userController = {
   // create get all method
   getAllUsers(req, res) {
     User.find({})
+      .select("-__v")
       .then((userData) => res.json(userData))
       .catch((err) => {
         console.log(err);
@@ -15,6 +21,7 @@ const userController = {
   getUserById({ params }, res) {
     // find one where id is params.id
     User.findOne({ _id: params.id })
+      .select("-__v")
       .then((userData) => {
         if (!userData) {
           res.sendStatus(404);
@@ -75,6 +82,10 @@ const userController = {
         res.json(err);
       });
   },
+
+  //addFriend()
+
+  //deleteFriend()
 };
 
 module.exports = userController;

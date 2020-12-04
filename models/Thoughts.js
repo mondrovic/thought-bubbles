@@ -55,5 +55,10 @@ const ThoughtSchema = new Schema(
   }
 );
 
+/*
+schema.virtual runs a get function
+  return length of reaction
+*/
+
 const Thoughts = model("Thoughts", ThoughtSchema);
 module.exports = Thoughts;

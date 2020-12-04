@@ -41,7 +41,6 @@ const userSchema = new Schema(
 );
 
 // virtual to count users
-
 /*
 schema.virtual runs get
   returns thoughts with reduce
