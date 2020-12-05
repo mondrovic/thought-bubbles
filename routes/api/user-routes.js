@@ -1,11 +1,3 @@
-/*
-/api/users/:userId/friends/:friendId
-
-    POST to add a new friend to a user's friend list
-
-    DELETE to remove a friend from a user's friend list
-*/
-
 const router = require("express").Router();
 const {
   getAllUsers,
@@ -13,12 +5,17 @@ const {
   createUser,
   deleteUser,
   updateUser,
+  addFriend,
+  deleteFriend,
 } = require("../../controllers/user-controller");
 
 // routes that don't require id
 router.route("/").get(getAllUsers).post(createUser);
 
 // routes that require id
-router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
+router.route("/:userId").get(getUserById).put(updateUser).delete(deleteUser);
+
+// add/remove friends
+router.route("/:userId/friends/:friendId").post(addFriend).delete(deleteFriend);
 
 module.exports = router;
