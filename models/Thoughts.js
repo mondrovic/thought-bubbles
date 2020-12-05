@@ -1,7 +1,3 @@
-/*
-- Add validator for maximum character
-*/
-
 const { Schema, model, Types } = require("mongoose");
 const moment = require("moment");
 
@@ -14,7 +10,7 @@ const ReactSchema = new Schema({
   reactionBody: {
     type: String,
     required: true,
-    // logic for 280 char max
+    maxlength: 280,
   },
   username: {
     type: String,
@@ -34,7 +30,7 @@ const ThoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      // logic for 280 char max
+      maxlength: 280,
     },
     createdAt: {
       type: Date,

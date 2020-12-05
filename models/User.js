@@ -1,8 +1,3 @@
-/*
-- Add validator for email
-- Set up virtual to count total thoughts
-*/
-
 const { Schema, model } = require("mongoose");
 const moment = require("moment");
 
@@ -18,6 +13,7 @@ const userSchema = new Schema(
       type: String,
       unique: true,
       required: true,
+      match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
     },
     thoughts: [
       {
