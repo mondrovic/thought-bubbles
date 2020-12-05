@@ -34,7 +34,7 @@ const ThoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      // between character amount
+      // logic for 280 char max
     },
     createdAt: {
       type: Date,
