@@ -40,12 +40,9 @@ const userSchema = new Schema(
   }
 );
 
-// virtual to count users
-/*
-schema.virtual runs get
-  returns thoughts with reduce
-    reduces (total, comment) into total + thoughts.length +1
-*/
+userSchema.virtual("thoughtCount").get(function () {
+  return this.thoughts.length;
+});
 
 const User = model("User", userSchema);
 
