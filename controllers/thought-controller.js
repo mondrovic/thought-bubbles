@@ -32,7 +32,6 @@ const thoughtController = {
   // add thought
   addThought({ params, body }, res) {
     Thoughts.create(body)
-      .select("-__v")
       .then(({ _id }) => {
         // returns _id where params.userId then pushes to thoughts
         return User.findOneAndUpdate(
